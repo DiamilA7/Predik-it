@@ -17,13 +17,11 @@ df['Exam_Score_20'] = df['Exam_Score'] / 5
 df['Previous_Scores_20'] = df['Previous_Scores'] / 5
 
 print("Dataset chargé :", df.shape)
-print(f"Note moyenne dans le dataset : {df['Exam_Score_20'].mean():.2f}/20\n")
-
 target = 'Exam_Score_20'
 
 # Features
 num_features = ['Hours_Studied', 'Sleep_Hours', 'Attendance', 'Previous_Scores_20', 'Physical_Activity']
-cat_features = ['Motivation_Level', 'Family_Income', 'School_Type', 
+cat_features = ['Motivation_Level', 'School_Type', 
                 'Peer_Influence', 'Learning_Disabilities', 'Parental_Involvement']
 
 X = df[num_features + cat_features]
@@ -51,13 +49,12 @@ r2 = r2_score(y_test, y_pred)
 
 print("─── RÉSULTATS ───────────────────────")
 print(f"RMSE  : {rmse:.2f} points")
-print(f"R²    : {r2:.3f}")
+print(f"R²  qualité du model  : {r2:.3f}")
 print("─────────────────────────────────────\n")
 
 # Mapping Français → Anglais
 mapping = {
     "motivation": {"bas": "Low", "moyen": "Medium", "élevé": "High", "faible": "Low", "fort": "High"},
-    "revenus": {"bas": "Low", "moyen": "Medium", "élevé": "High"},
     "ecole": {"publique": "Public", "privée": "Private"},
     "influence": {"positive": "Positive", "positif": "Positive", "neutre": "Neutral", "négative": "Negative", "negatif": "Negative"},
     "troubles": {"oui": "Yes", "non": "No"},
@@ -79,9 +76,6 @@ def predikt_it():
     # Catégoriels
     mot = input("Niveau de motivation (Bas/Moyen/Élevé) ? ").strip().lower()
     data['Motivation_Level'] = mapping["motivation"].get(mot, "Medium")
-    
-    rev = input("Revenus de la famille (Bas/Moyen/Élevé) ? ").strip().lower()
-    data['Family_Income'] = mapping["revenus"].get(rev, "Medium")
     
     eco = input("Type d'école (Publique/Privée) ? ").strip().lower()
     data['School_Type'] = mapping["ecole"].get(eco, "Public")
