@@ -32,7 +32,10 @@ Le modèle utilise les informations suivantes :
 - Note moyenne du dataset : 12.5/20
 
 ---
-
+## Performances du modèle actuel :
+- RMSE≈ 2.25Erreur moyenne de ± 2,25 points sur 20R²≈ 0.58 - 0.62
+- Qualité du modèle
+---
 ## Technologies utilisées
 
 - Python 3
